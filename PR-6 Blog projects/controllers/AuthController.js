@@ -50,6 +50,9 @@ const loginUser = async(req,res) => {
 
 const dashboardPage = async (req, res) => {
     try {
+        if(!req.cookies['auth']){
+            return res.redirect('/');
+        }
         const { name, description, image } = req.body; 
 
         const user = await blogModal.find({});
@@ -65,11 +68,17 @@ const dashboardPage = async (req, res) => {
 };
 
 const addblog = (req, res) => {
+    if(!req.cookies['auth']){
+        return res.redirect('/');
+    }
     return res.render('add')
 }
 
 const addblogdata = async (req, res) => {
     try {
+        if(!req.cookies['auth']){
+            return res.redirect('/');
+        }
         const { name, description } = req.body
         const user = await blogModal.create({
             name: name,

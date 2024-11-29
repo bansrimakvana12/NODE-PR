@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e8f4fa;
+        }
+
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .action-buttons a {
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-buttons a.delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .action-buttons a.delete:hover {
+            background-color: #c0392b;
+        }
+
+        .action-buttons a.edit {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .action-buttons a.edit:hover {
+            background-color: #2ecc71;
+        }
+        .edit1{
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            padding: 10px;
+            width: 250px;
+            margin: 8px 0 ;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Add User</h2>
+        <form action="/recordInsert" method="post">
+            <input type="text" name="task" placeholder="Enter task" required>
+            <input type="text" name="status" placeholder="Enter status" required>
+            <input type="date" name="deadline" class="edit1" required>
+
+            <input type="submit" value="Add User">
+        </form>
+
+        <h2>View Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% all.map((u, i) => { const { id, task, status , deadline } = u %>
+                <tr>
+                    <!-- <td><%= ++i %></td> -->
+
+                    <td><%= u.task %></td>
+                    <td><%= u.status %></td>
+                    <td><%= u.deadline %></td>
+
+
+                    <td class="action-buttons">
+                        <a href="/delete?deleteid=<%= id %>" class="delete">Delete</a>
+                        <a href="/edit?id=<%= id %>" class="edit">Edit</a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

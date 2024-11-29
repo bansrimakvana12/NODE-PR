@@ -1,0 +1,133 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        .card {
+        background: rgb(7 5 5 / 30%); /* Transparent white background */
+        backdrop-filter: blur(10px); /* Frosted glass effect */
+        -webkit-backdrop-filter: blur(10px); /* Safari compatibility */
+        border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+        width: 100%;
+        max-width: 400px;
+    }
+    .card h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #ffffff; /* White text for contrast */
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .form-input {
+        background: rgb(163 159 159 / 30%); /* Semi-transparent input fields */
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        width: 100%;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: #ffffff; /* White text for input */
+        outline: none;
+        transition: all 0.3s ease;
+    }
+    .form-input:focus {
+        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+    .btn {
+        background-color: rgba(37, 99, 235, 0.8);
+        color: #ffffff;
+        border: none;
+        padding: 0.75rem;
+        width: 100%;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+        background-color: rgba(29, 78, 216, 0.9);
+    }
+    .text-sm {
+        font-size: 0.875rem;
+        color: #ffffff; /* Lighter text color */
+        text-align: center;
+        margin-top: 1rem;
+    }
+    .text-sm a {
+        color: rgb(19 212 52 / 80%);
+        text-decoration: none;
+    }
+    .text-sm a:hover {
+        text-decoration: underline;
+    }
+    body {
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-image: url('../uploads/3.jpg'); /* Ensure this image has depth/texture for the best effect */
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    
+       </style>
+</head>
+<body>
+    <div class="card">
+        <h2 class="text-center">Welcome Back</h2>
+        <form action="/ragister" method="post" onsubmit="return validateForm()">
+
+            <input 
+            type="name" 
+            id="name" 
+            name="name" 
+            class="form-input" 
+            placeholder="enter name ">
+        <small id="emailError" class="text-red-500 hidden">name</small>
+
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-input" 
+                placeholder="Email Address">
+            <small id="emailError" class="text-red-500 hidden">Invalid email address.</small>
+
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="form-input" 
+                placeholder="Password">
+            <small id="passwordError" class="text-red-500 hidden">Password cannot be empty.</small>
+
+            <button type="submit" class="btn">Register Now</button>
+        </form>
+        <p class="text-sm">Don't have an account? <a href="/">Login</a></p>
+    </div>
+
+   
+</body>
+</html>
+
+

@@ -15,6 +15,9 @@ app.use(cookieParser());
 app.use(express.urlencoded());
 
 app.use('/',require('./routes/indexRoute'));
+const path = require('path')
+app.use('/uploads',express.static(path.join(__dirname,'uploads')))
+
 
 app.listen(port,(err)=>{
     if(err){

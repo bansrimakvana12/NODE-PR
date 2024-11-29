@@ -10,6 +10,9 @@ const loginPage = (req,res) => {
     return res.render('login');
 }
 const registerPage = (req,res) => {
+    if(!req.cookies['auth']){
+        return res.redirect('/');
+    }
     return res.render('register');
 }
 const registerRecord = async(req,res) => {

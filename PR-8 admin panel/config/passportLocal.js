@@ -3,6 +3,7 @@ const passport = require('passport');
 const passportLocal = require('passport-local').Strategy;
 
 const UserModel = require('../models/UserModel');
+const catagoryModal = require('../models/catagoryModal');
 
 passport.use(new passportLocal({
     usernameField : 'email'

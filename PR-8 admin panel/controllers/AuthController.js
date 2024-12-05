@@ -13,17 +13,13 @@ const registerUser = async(req,res) => {
     try{
         const {name,email,password,cpassword} = req.body
 
-        if(password != cpassword){
-            console.log(`password and confiram password not match`);
-            return res.redirect('/register')
-        }
-
-        let user = await UserModel.create({
+         await UserModel.create({
             name : name,
             email : email,
             password : password
         })
-        return res.redirect('/');
+        console.log("user success fully create");
+        return res.redirect('dashboard');
     }catch(err){
         console.log(err);
         return false;
@@ -150,8 +146,68 @@ const postNewpassword = async(req,res) => {
     }catch(err){
         console.log(err);
         return false;
+    }myProfile
+}
+
+const  myProfile = (req , res) =>{
+    try {
+        return res.render('profile')
+    } catch (err) {
+        console.log(err);
+        return false;
     }
 }
+
+const profileChange = async (req , res ) =>{
+    try {
+        const { editprofile , name , password } = req.body ;
+        await UserModel.findOneAndUpdate({ email: editprofile }, {
+            name : name ,
+            password : password
+        })
+        console.log("profile change");
+        return res.redirect('/dashboard')
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+//  change password 
+
+const changePassword = async (req , res) =>{
+    try {
+        return res.render('changePassword')
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
+const postChangepassword = async (req ,res) =>{
+    try {
+        let email = res.locals.user.email;
+        let user = await UserModel.findOne({ email: email });
+        const useroldpassword = user.password;
+
+        const { oldpassword, newpassword } = req.body;
+        if (oldpassword == useroldpassword) {
+            await UserModel.findOneAndUpdate({ email: email }, {
+                password: newpassword
+            })
+            console.log('password changed');
+
+            return res.redirect('/dashboard')
+        } else {
+            console.log('oldpassword and newpassword not match');
+            return res.redirect('/dashboard')
+        }
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+
+}
+
 module.exports = {
-    loginPage,registerPage,registerUser,loginUser,dashboardPage,logoutUser,forgotPassword,otpPage,postOtp,newpass,postNewpassword
+    loginPage,registerPage,registerUser,loginUser,dashboardPage,logoutUser,forgotPassword,otpPage,postOtp,newpass,postNewpassword , myProfile , profileChange , changePassword , postChangepassword
 }

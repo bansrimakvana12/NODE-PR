@@ -2,7 +2,7 @@ const express = require('express');
 
 const routes = express.Router();
 
-const { loginPage, registerPage, registerUser,loginUser,dashboardPage,logoutUser,forgotPassword,otpPage,postOtp,newpass,postNewpassword } = require('../controllers/AuthController');
+const { loginPage, registerPage, registerUser,loginUser,dashboardPage,logoutUser,forgotPassword,otpPage,postOtp,newpass,postNewpassword , myProfile , profileChange, postChangepassword , changePassword } = require('../controllers/AuthController');
 
 const passport = require('passport');
 
@@ -21,6 +21,14 @@ routes.post('/postotp',postOtp)
 routes.get('/newpass',newpass)
 routes.post('/postnewpassword',postNewpassword)
 
+
+// my profile
+routes.get('/myprofile',myProfile);
+routes.post('/profilechange', profileChange);
+
+// change password 
+routes.post('/postChangepassword', postChangepassword );
+routes.get('/changepassword', changePassword );
 
 
 

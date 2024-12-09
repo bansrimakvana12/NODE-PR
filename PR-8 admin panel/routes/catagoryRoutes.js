@@ -10,6 +10,8 @@ routes.post('/insertcatagory', insertCatagory )
 routes.get('/deletecatagory', deleteCatagory )
 routes.get('/editcatagory', editCatagory )
 routes.post('/updatecatagory', updateCatagory )
+
+// change status 
 routes.get('/changestatus', changeStatus )
 
 

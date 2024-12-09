@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const subcatagorySchema = mongoose.Schema({
     catagoryId : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : "catagory",
+        ref : "catagoryuser",
     },
     subcatagory :{
         type : String,
@@ -11,8 +11,6 @@ const subcatagorySchema = mongoose.Schema({
     },
    status : {
     type : String,
-
-
     default : "deactive",
    }
 })

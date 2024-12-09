@@ -43,31 +43,36 @@
                   <th scope="col">Id</th>
                   <th scope="col">Catagory</th>
                   <th scope="col">SubCatagory</th>
+                  <th scope="col">ExSubCatagory</th>
                   <th scope="col">Action</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
-                <% subcatagory.map((val,i)=>{ %>
-                  <tr>
-                      <td scope="row">
+                <% exsubcatagorydata.map((exs,i)=>{ %>
+                  <tr>      
+                      <th scope="row">
                           <%= ++i %>
+                      </th>
+                      <td>
+                          <%= exs.catagoryId.catagory_name %>
                       </td>
                       <td>
-                          <%= val.catagoryId.catagory_name %>
+                        <%= exs.subcatagoryId.subcatagory %>
                       </td>
                       <td>
-                          <%= val.subcatagory %>
+                          <%= exs.exsubcatagory %>
                       </td>
                       <td>
-                        <a href="/subcatagory/deletesubcatagory?id=<%= val.id  %>" class="btn btn-danger">Delete</a> 
-                        <a href="/subcatagory/editsubcatagory?id=<%= val.id  %>" class="btn btn-warning">Edit</a>
+                        <a href="/exsubcatagory/deleteexsubcatagory?id=<%= exs.id  %>" class="btn btn-danger">Delete</a> 
+                        <a href="/exsubcatagory/editexsubcatagory?id=<%= exs.id  %>" class="btn btn-warning">Edit</a>
+
                       </td>
                       <td>
-                        <% if( val.status == "active") { %>
-                          <a href="/subcatagory/changesubstatus?id=<%= val.id %>&status=<%= val.status %>" class="btn btn-success"> <%= val.status %>  </a>
+                        <% if( exs.status == "active") { %>
+                          <a href="/exsubcatagory/changeexsubstatus?id=<%= exs.id %>&status=<%= exs.status %>" class="btn btn-success"> <%= exs.status %>  </a>
                       <% } else { %>
-                        <a href="/subcatagory/changesubstatus?id=<%= val.id %>&status=<%= val.status %>" class="btn btn-warning"> <%= val.status %>  </a>
+                        <a href="/exsubcatagory/changeexsubstatus?id=<%= exs.id %>&status=<%= exs.status %>" class="btn btn-warning"> <%= exs.status %>  </a>
                    <%   } %>
                       </td>
                   </tr>

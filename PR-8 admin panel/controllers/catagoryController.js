@@ -89,8 +89,6 @@ const changeStatus = async (req , res) => {
             })
             return res.redirect('/catagory/viewcatagory')
         }
-        
-        
     } catch (err) {
         console.log(err);
         return false;

@@ -4,8 +4,11 @@ const routes = express.Router();
 
 const { addCatagory , viewCatagory , insertCatagory , deleteCatagory ,editCatagory , updateCatagory , changeStatus} = require('../controllers/catagoryController');
 
-routes.get('/addcatagory', addCatagory)
-routes.get('/viewcatagory',viewCatagory)
+const passport = require('passport');
+
+
+routes.get('/addcatagory', passport.checkUser, addCatagory)
+routes.get('/viewcatagory', passport.checkUser,viewCatagory)
 routes.post('/insertcatagory', insertCatagory )
 routes.get('/deletecatagory', deleteCatagory )
 routes.get('/editcatagory', editCatagory )

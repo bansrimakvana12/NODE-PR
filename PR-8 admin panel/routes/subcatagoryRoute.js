@@ -5,8 +5,8 @@ const { subCatagory , addsubCatagory , insertsubCatagory , deletesubCatagory ,ed
 
 const passport = require('passport');
 
-routes.get('/',subCatagory)
-routes.get('/addsubcatagory',addsubCatagory)
+routes.get('/', passport.checkUser,subCatagory)
+routes.get('/addsubcatagory', passport.checkUser,addsubCatagory)
 routes.post('/insertsubcatagory',insertsubCatagory)
 routes.get('/deletesubcatagory',deletesubCatagory)
 routes.get('/editsubcatagory',editsubCatagory)

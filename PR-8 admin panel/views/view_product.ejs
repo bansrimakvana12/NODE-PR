@@ -1,0 +1,130 @@
+<%- include('header') %>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Tables</h4>
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Library
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title mb-0">Static Table</h5>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Catagory</th>
+                  <th scope="col">SubCatagory</th>
+                  <th scope="col">ExSubCatagory</th>
+                  <th scope="col">Product name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Action</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% productdata.map((p,i)=>{ %>
+                  <tr>      
+                      <th scope="row">
+                          <%= ++i %>
+                      </th>
+
+                      
+                      <td>
+                          <%= p.catagoryId.catagory_name %>
+                      </td>
+                      <td>
+                        <%= p.subcatagoryId.subcatagory %>
+                      </td>
+                      <td>
+                          <%= p.exsubcatagoryId.exsubcatagory %>
+                      </td>
+                      <td>
+                        <%= p.name %>
+                      </td>
+                      <td>
+                        <%= p.price %>
+                      </td>
+                      <td>
+                        <%= p.description %>
+                      </td>
+                      <td>
+                        <img src="/<%= p.image %>" width="70">
+                      </td>
+                      <td>
+                        <a href="/product/deleteproduct?id=<%= p.id  %>" class="btn btn-danger">Delete</a> 
+                        <a href="/product/editproduct?id=<%= p.id  %>" class="btn btn-primary">Edit</a>
+
+                      </td>
+
+                      <td>
+                        <% if( p.status == "active") { %>
+                          <a href="/product/changeproduct?id=<%= p.id %>&status=<%= p.status %>" class="btn btn-success"> <%= p.status %>  </a>
+                      <% } else { %>
+                        <a href="/product/changeproduct?id=<%= p.id %>&status=<%= p.status %>" class="btn btn-warning"> <%= p.status %>  </a>
+                   <%   } %>
+                      </td>
+
+                  </tr>
+                  <% }) %>
+               
+              </tbody>
+            </table>
+          </div>
+         
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- End PAge Content -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Right sidebar -->
+      <!-- ============================================================== -->
+      <!-- .right-sidebar -->
+      <!-- ============================================================== -->
+      <!-- End Right sidebar -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+  </div>
+
+<%- include('footer') %>

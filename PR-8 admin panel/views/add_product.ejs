@@ -1,0 +1,255 @@
+<%- include('header') %>
+
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb">
+    <div class="row">
+      <div class="col-12 d-flex no-block align-items-center">
+        <h4 class="page-title">Form Basic</h4>
+        <div class="ms-auto text-end">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Library
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Container fluid  -->
+  <!-- ============================================================== -->
+  <div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <form class="form-horizontal" enctype="multipart/form-data" method="post" action="/product/insertproduct">
+            <div class="card-body">
+              <h4 class="card-title">Personal Info</h4>
+              <div class="form-group row">
+                <label
+                  for="fname"
+                  name="name"
+                  class="col-sm-3 text-center control-label col-form-label"
+                  
+                  >Catagory Name</label
+                >
+                <div class="col-sm-9">
+                 <select class="form-control" name="catagory" onchange="categoryRecord()" id="catagory"> 
+                    <option value=""> ---- select  catagory ----</option>
+                    <% catagory.map((c)=>{ %>
+                        <option value="<%= c.id  %>">
+                          <%= c.catagory_name %> 
+                        </option>
+                  <%  }) %>
+                 </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label
+                  for="fname"
+                  name="name"
+                  class="col-sm-3 text-center control-label col-form-label"
+                  >SubCatagory Name</label
+                >
+                <div class="col-sm-9">
+                    <select id="subcatagory" onchange="subcategoryRecord()"  name="subcatagory"
+                    class="form-control">
+                    <option>--select subcategory--</option>
+                </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label
+                  for="fname"
+                  name="name"
+                  class="col-sm-3 text-center control-label col-form-label"
+                  >ExtraSub catagory :</label
+                >
+                <div class="col-sm-9">
+                    <select id="exsubcatagory" name="exsubcatagory"  class="form-control">
+                      <option value=""> ---- select ex catagory ----</option>
+                      <% exsubcatagory.map((c)=>{ %>
+                          <option value="<%= c.id  %>">
+                            <%= c.exsubcatagory %> 
+                          </option>
+                    <%  }) %>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label
+                  for="fname"
+                  name="name"
+                  class="col-sm-3 text-center control-label col-form-label"
+                  >product name :</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fname" name="name"
+                    placeholder="product Name "
+                  />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label
+                  for="fname"
+                  name="name"
+                  class="col-sm-3 text-center control-label col-form-label"
+                  >product price :</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fname" name="price"
+                    placeholder="price"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label
+                  for="fname"
+                  name="name"
+                  class="col-sm-3 text-center control-label col-form-label"
+                  >product description :</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fname" name="description"
+                    placeholder="description"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label
+                  for="fname"
+                  name="name"
+                  class="col-sm-3 text-center control-label col-form-label"
+                  >Image :</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="fname" name="image"
+                  
+                  />
+                </div>
+              </div>
+
+
+            </div>
+            <div class="border-top">
+              <div class="card-body">
+                <button type="submit" class="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+       
+        
+      </div>
+      
+    </div>
+    <!-- editor -->
+  
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Container fluid  -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- footer -->
+  <!-- ============================================================== -->
+
+  <!-- ============================================================== -->
+  <!-- End footer -->
+  <!-- ============================================================== -->
+</div>
+
+<%- include('footer') %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  const categoryRecord = (req , res) => {
+  let catagory = document.getElementById("catagory").value;
+  $.ajax({
+    type : 'GET',
+    url : `/product/ajaxgetCatagory?id=${catagory}`,
+    success : function(res){
+      let tbl = "";
+      let catagory = res.catagory
+      tbl += `<option value="">---- select catagory ----</option>`;
+      catagory.map((subcat)=>{
+        console.log(subcat);
+        
+        tbl += `
+          <option value="${subcat._id}">${subcat.subcatagory}</option>
+        `
+      })
+      document.getElementById("subcatagory").innerHTML = tbl;
+
+
+
+    }
+  })
+}
+
+  const subcategoryRecord = (req , res) => {
+  let subcatagory = document.getElementById("subcatagory").value;
+  $.ajax({
+    type : 'GET',
+    url : `/product/ajaxgetsubCatagory?id=${subcatagory}`,
+    success : function(res){
+      let tbl = "";
+      let subcatagory = res.subcatagory
+      tbl += `<option value="">---- select subcatagory ----</option>`;
+      subcatagory.map((exsubcat)=>{
+        console.log(exsubcat);
+        
+        tbl += `
+          <option value="${exsubcat._id}">${exsubcat.exsubcatagory}</option>
+        `
+      })
+      document.getElementById("exsubcatagory").innerHTML = tbl;
+
+
+
+    }
+  })
+}
+
+
+
+        
+</script>

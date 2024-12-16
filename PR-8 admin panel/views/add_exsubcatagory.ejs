@@ -42,10 +42,11 @@
                   for="fname"
                   name="name"
                   class="col-sm-3 text-center control-label col-form-label"
+                  
                   >Catagory Name</label
                 >
                 <div class="col-sm-9">
-                 <select class="form-control" name="catagory" > 
+                 <select class="form-control" name="catagory" onchange="categoryRecord()" id="catagory"> 
                     <option value=""> ---- select  catagory ----</option>
                     <% catagory.map((c)=>{ %>
                         <option value="<%= c.id  %>">
@@ -63,13 +64,9 @@
                   >SubCatagory Name</label
                 >
                 <div class="col-sm-9">
-                 <select class="form-control" name="subcatagory" > 
+                 <select class="form-control" name="subcatagory" id="subcatagory"> 
                     <option value=""> ---- select sub catagory ----</option>
-                    <% subcatagory.map((c)=>{ %>
-                        <option value="<%= c.id  %>">
-                          <%= c.subcatagory %> 
-                        </option>
-                  <%  }) %>
+                   
                  </select>
                 </div>
               </div>
@@ -130,3 +127,30 @@
 </div>
 
 <%- include('footer') %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  const categoryRecord = (req , res) => {
+  let catagory = document.getElementById("catagory").value;
+  $.ajax({
+    type : 'GET',
+    url : `/exsubcatagory/ajaxgetCatagory?id=${catagory}`,
+    success : function(res){
+      let tbl = "";
+      let catagory = res.catagory
+      tbl += `<option value="">---- select catagory ----</option>`;
+      catagory.map((subcat)=>{
+        console.log(subcat);
+        
+        tbl += `
+          <option value="${subcat._id}">${subcat.subcatagory}</option>
+        `
+      })
+      document.getElementById("subcatagory").innerHTML = tbl;
+
+
+
+    }
+  })
+}
+</script>

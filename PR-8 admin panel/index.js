@@ -10,6 +10,8 @@ const path = require('path');
 
 const db = require('./config/db');
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 const cookieParser = require('cookie-parser');
 
 app.use('/',express.static(path.join(__dirname,'public')));
@@ -26,11 +28,11 @@ app.use(session({
     }
 }))
 app.use(passport.session());
-app.use(passport.initialize());
+app.use(passport.initialize());  
 app.use(passport.setUser);
 app.use(express.urlencoded());
 
-app.use('/',require('./routes/indexRoute'));
+app.use('/',require('./routes/indexRoute')); 
 
 app.listen(port,(err)=>{
     if(err){

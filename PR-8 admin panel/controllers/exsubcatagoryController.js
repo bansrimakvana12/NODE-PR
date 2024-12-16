@@ -5,8 +5,6 @@ const exsubcatagoryuser = require('../models/exsubcatagoryModal')
 const routes = require('../routes/exsubcatagoryRoute');
 
 const exsubCatagory = async(req , res) => {
-    console.log("done");
-    
     try {
         let exsubcatagorydata = await exsubcatagoryuser.find({}).populate("catagoryId").populate("subcatagoryId");
         return res.render('view_exsubcatagory',{
@@ -80,9 +78,11 @@ const editexsubCatagory = async (req , res) =>{
 const updateexsubCatagory = async (req , res) => {
     try {
         const { editid, catagory, subcatagory , exsubcatagory } = req.body;
+        console.log(req.body);
+        
         await exsubcatagoryuser.findByIdAndUpdate(editid, {
             catagoryId: catagory,
-            subcatagory: subcatagory ,
+            subcatagoryId: subcatagory ,
             exsubcatagory : exsubcatagory,
         })
         return res.redirect('/exsubcatagory');
@@ -97,15 +97,15 @@ const changeexsubStatus = async (req , res) => {
         let id = req.query.id;
         let status = req.query.status;
         if (status== "active") {
-            await catagoryuser.findByIdAndUpdate(id ,{
+            await exsubcatagoryuser.findByIdAndUpdate(id ,{
                 status : "deactive",
             })
-            return res.redirect('/subcatagory')
+            return res.redirect('/exsubcatagory')
         }else{   
-            await catagoryuser.findByIdAndUpdate(id ,{
+            await exsubcatagoryuser.findByIdAndUpdate(id ,{
                 status : "active",
             })
-            return res.redirect('/subcatagory')
+            return res.redirect('/exsubcatagory')
         }
     } catch (err) {
         console.log(err);
@@ -113,6 +113,21 @@ const changeexsubStatus = async (req , res) => {
     }
 }
 
+const ajaxgetCatagory = async (req , res) => {
+    try {
+        let id = req.query.id;
+        let catagory = await subcatagoryuser.find({catagoryId:id});
+        return res.send({
+            success: true,
+            message : "record fetch",
+            catagory
+        })
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
 module.exports = {
-    exsubCatagory , addexsubCatagory ,insertexsubCatagory ,deleteexsubCatagory ,editexsubCatagory ,updateexsubCatagory ,changeexsubStatus
+    exsubCatagory , addexsubCatagory ,insertexsubCatagory ,deleteexsubCatagory ,editexsubCatagory ,updateexsubCatagory ,changeexsubStatus , ajaxgetCatagory
 }

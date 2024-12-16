@@ -87,13 +87,13 @@ const changesubStatus = async (req , res) => {
     try {
         let id = req.query.id;
         let status = req.query.status;
-        if (status== "active") {
-            await catagoryuser.findByIdAndUpdate(id ,{
+        if (status == "active") {
+            await subcatagoryuser.findByIdAndUpdate(id ,{
                 status : "deactive",
             })
             return res.redirect('/subcatagory')
         }else{   
-            await catagoryuser.findByIdAndUpdate(id ,{
+            await subcatagoryuser.findByIdAndUpdate(id ,{
                 status : "active",
             })
             return res.redirect('/subcatagory')

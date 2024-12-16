@@ -6,7 +6,6 @@ const productuser = require('../models/productModal')
 const fs = require('fs')
 const path = require('path')
 
-const routes = require('../routes/productRoute');
 
 const   Product = async(req , res) => {
     try {

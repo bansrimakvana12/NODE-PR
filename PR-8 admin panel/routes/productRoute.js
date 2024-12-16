@@ -25,7 +25,7 @@ routes.post('/insertproduct',upload, insertProduct)
 
 routes.get('/deleteproduct', deleteProduct)
 routes.get('/editproduct',editProduct)
-routes.post('/updateproduct',updateProduct)
+routes.post('/updateproduct',upload ,updateProduct)
 
 routes.get('/changeproduct',changeProduct)
 routes.get('/ajaxgetCatagory', ajaxgetCatagory)

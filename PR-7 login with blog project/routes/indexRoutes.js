@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const { registerpage, registerusers, loginpage, loginuser, dashboardpage, addblog, addblougesdata, deletdata, editpage, update,logout,readmore } = require('../controller/authcontroller')
 
 const routes = express.Router()
@@ -29,6 +29,7 @@ routes.post('/addblouges',fileUpload, addblougesdata)
 routes.get('/deletdata/:id', deletdata)
 routes.get('/editpage/:id', editpage)
 routes.post('/update',fileUpload, update)
+
 
 routes.get('/logout',logout)
 routes.get('/readmore/:id',readmore)

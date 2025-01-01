@@ -8,9 +8,9 @@ const { verifyToken, Admin } = require('../middleware/Auth');
 
 routes.post('/adduser',addUser)
 routes.get('/viewuser',verifyToken,Admin,viewUser);
-routes.delete('/deleteuser',verifyToken,Admin,deleteUser)
-routes.put('/updateuser',verifyToken,Admin,updateUser)
+routes.delete('/deleteuser',deleteUser)
+routes.put('/updateuser',updateUser)
 
 
 
-module.exports = routes
+module.exports = routes 

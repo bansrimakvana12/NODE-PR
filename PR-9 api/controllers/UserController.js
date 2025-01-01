@@ -38,6 +38,7 @@ const addUser = async(req,res) => {
 const viewUser = async(req,res) => {
     try{
         let users = await UserModel.find({});
+        
         return res.status(200).send({
             success : true,
             length : users.length,
@@ -54,6 +55,7 @@ const viewUser = async(req,res) => {
 const deleteUser = async(req,res) => {
     try{
         let id = req.query.id;
+        console.log(id);
         
         await UserModel.findByIdAndDelete(id);
         return res.status(200).send({
@@ -95,5 +97,5 @@ const updateUser = async(req,res) => {
     }
 }
 module.exports = {
-    addUser,viewUser,deleteUser,updateUser
+    addUser ,viewUser ,deleteUser , updateUser
 }

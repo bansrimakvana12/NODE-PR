@@ -17,7 +17,7 @@ const loginUser = async(req,res) => {
                 message : "Email and Password not valid",
             })
         }
-        let token = await jwt.sign({payload:user},"rnw3",{expiresIn:'1hr'})
+        let token = await jwt.sign({payload:user},"rnw3",{expiresIn:'9hr'})
         return res.status(200).send({
             success : true,
             token : token
